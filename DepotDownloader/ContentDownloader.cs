@@ -880,11 +880,6 @@ namespace DepotDownloader
             filesAfterExclusions.ForEach(file =>
             {
                 allFileNames.Add(file.FileName);
-
-                if (!file.Flags.HasFlag(EDepotFileFlag.Directory))
-                {
-                    depotCounter.CompleteDownloadSize += file.TotalSize;
-                }
             });
 
             return new DepotFilesData
@@ -1102,11 +1097,6 @@ namespace DepotDownloader
 
                 if (neededChunks.Count == 0)
                 {
-                    lock (depotDownloadCounter)
-                    {
-                        depotDownloadCounter.SizeDownloaded += file.TotalSize;
-                    }
-
                     Console.WriteLine($"Downloaded {fileFinalPath}");
                     return;
                 }
