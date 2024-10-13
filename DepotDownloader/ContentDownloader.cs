@@ -1097,7 +1097,7 @@ namespace DepotDownloader
 
                 if (neededChunks.Count == 0)
                 {
-                    Console.WriteLine($"Downloaded {fileFinalPath}");
+                    Console.WriteLine($"Downloaded  {fileFinalPath}");
                     return;
                 }
 
