@@ -725,7 +725,6 @@ namespace DepotDownloader
                     Console.Write("Downloading depot manifest... ");
 
                     DepotManifest depotManifest = null;
-                    DepotManifest depotManifest = null;
                     ulong manifestRequestCode = 0;
                     var manifestRequestCodeExpiration = DateTime.MinValue;
 

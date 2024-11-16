@@ -24,23 +24,6 @@ static class Ansi
 
     private static bool useProgress;
 
-    public static void Init()
-    {
-        if (Console.IsInputRedirected || Console.IsOutputRedirected)
-        {
-            return;
-        }
-
-        if (OperatingSystem.IsLinux())
-        {
-            return;
-        }
-
-        var (supportsAnsi, legacyConsole) = AnsiDetector.Detect(stdError: false, upgrade: true);
-
-        useProgress = supportsAnsi && !legacyConsole;
-    }
-
     public static void Progress(ulong downloaded, ulong total)
     {
         var progress = (byte)MathF.Round(downloaded / (float)total * 100.0f);
@@ -49,11 +32,6 @@ static class Ansi
 
     public static void Progress(ProgressState state, byte progress = 0)
     {
-        if (!useProgress)
-        {
-            return;
-        }
 
-        Console.Write($"{ESC}]9;4;{(byte)state};{progress}{BEL}");
     }
 }
